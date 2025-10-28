@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     // --- Global Background Music Logic ---
     const globalBgMusic = document.getElementById('global-bg-music');
     const musicToggleButton = document.getElementById('music-toggle');
-
-    let isMusicPlaying = true; // Assume it's trying to play
+    let isMusicPlaying = true;
 
     function updateMusicToggleButton() {
         if (globalBgMusic.paused) {
@@ -15,90 +13,69 @@ document.addEventListener('DOMContentLoaded', () => {
             isMusicPlaying = true;
         }
     }
-
     musicToggleButton.addEventListener('click', () => {
-        if (isMusicPlaying) {
-            globalBgMusic.pause();
-        } else {
-            globalBgMusic.play().catch(e => console.log("Music play prevented by browser."));
-        }
+        isMusicPlaying ? globalBgMusic.pause() : globalBgMusic.play().catch(e => {});
         isMusicPlaying = !isMusicPlaying;
         updateMusicToggleButton();
     });
-
     globalBgMusic.addEventListener('play', updateMusicToggleButton);
     globalBgMusic.addEventListener('pause', updateMusicToggleButton);
     updateMusicToggleButton();
 
-    // --- Celebration Overlay Logic ---
+    // --- Celebration Overlay & Balloons Logic ---
     const celebrationOverlay = document.getElementById('celebration-overlay');
     if (celebrationOverlay) {
-        setTimeout(() => {
-            celebrationOverlay.classList.add('fade-out');
-            globalBgMusic.play().catch(e => console.log("Autoplay was prevented by the browser."));
-            updateMusicToggleButton();
-        }, 4000); // Overlay display time
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = `${Math.random() * 100}vw`;
+            const duration = 10 + Math.random() * 10;
+            const delay = Math.random() * 3;
+            balloon.style.animation = `balloon-rise ${duration}s linear ${delay}s forwards`;
+            celebrationOverlay.appendChild(balloon);
+            setTimeout(() => balloon.remove(), (delay + duration) * 1000);
+        }
+        for (let i = 0; i < 15; i++) createBalloon(); // 15 balloons is good for mobile
 
         setTimeout(() => {
-            celebrationOverlay.remove();
-        }, 5500); // Remove after fade-out
+            celebrationOverlay.classList.add('fade-out');
+            globalBgMusic.play().catch(e => {});
+            updateMusicToggleButton();
+        }, 4000);
+        setTimeout(() => celebrationOverlay.remove(), 5500);
     } else {
-        // Fallback if overlay is missing
-        globalBgMusic.play().catch(e => console.log("Autoplay was prevented by the browser."));
+        globalBgMusic.play().catch(e => {});
         updateMusicToggleButton();
     }
 
-    // --- Reusable Carousel Function ---
-    // (This part is identical to the original script)
+    // --- Carousel Function ---
     function setupCarousel(carouselSelector) {
         const carousel = document.querySelector(carouselSelector);
         if (!carousel) return;
         const items = carousel.querySelectorAll('img');
-        if (items.length === 0) return;
         const prevBtn = carousel.querySelector('.prev-btn');
         const nextBtn = carousel.querySelector('.next-btn');
         let currentItemIndex = 0;
 
         function showItem(index) {
-            items.forEach((item, i) => {
-                item.style.display = 'none'; // Simple fade can be added with CSS
-                if (i === index) {
-                    item.style.display = 'block';
-                }
-            });
+            items.forEach((item, i) => item.classList.remove('active'));
+            items[index].classList.add('active');
         }
-
         showItem(currentItemIndex);
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentItemIndex = (currentItemIndex - 1 + items.length) % items.length;
-                showItem(currentItemIndex);
-            });
-        }
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                currentItemIndex = (currentItemIndex + 1) % items.length;
-                showItem(currentItemIndex);
-            });
-        }
-
-        // Automatic slide change
-        setInterval(() => {
-            nextBtn.click();
-        }, 5000);
+        prevBtn.addEventListener('click', () => {
+            currentItemIndex = (currentItemIndex - 1 + items.length) % items.length;
+            showItem(currentItemIndex);
+        });
+        nextBtn.addEventListener('click', () => {
+            currentItemIndex = (currentItemIndex + 1) % items.length;
+            showItem(currentItemIndex);
+        });
+        setInterval(() => nextBtn.click(), 5000);
     }
-
     setupCarousel('.memories-carousel');
 
-    // --- Scroll Reveal Animation for Sections ---
-    // (This part is identical to the original script)
+    // --- Scroll Reveal Animation ---
     const scrollRevealSections = document.querySelectorAll('.scroll-reveal');
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -106,9 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    scrollRevealSections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+    }, { threshold: 0.1 });
+    scrollRevealSections.forEach(section => sectionObserver.observe(section));
 });
