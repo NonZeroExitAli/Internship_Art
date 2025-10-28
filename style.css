@@ -1,0 +1,213 @@
+/* Basic Reset & Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Using 'Open Sans' as the default English font */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #4B4B4B; /* Dark Charcoal */
+    background-color: #FEF5F5; /* Very Light Pink */
+    scroll-behavior: smooth;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Styling for Arabic paragraphs and headings */
+h1, h2, h3, p, blockquote {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* Special elegant font for Arabic celebration text and signatures */
+.celebration-text, .celebration-subtext, .signature, #wishes blockquote {
+    font-family: 'Amiri', serif;
+}
+
+/* GLOBAL MUSIC TOGGLE BUTTON */
+#music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #D4A3A1; /* Dusty Rose */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 10000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#music-toggle:hover {
+    background-color: #C18C8A; /* Darker Dusty Rose */
+    transform: translateY(-2px);
+}
+
+#music-toggle .icon {
+    font-size: 1.2rem;
+}
+
+/* CELEBRATION OVERLAY STYLES */
+#celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #D4A3A1, #F4C7C3); /* Dusty Rose to Soft Peach */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1.5s ease-out;
+    overflow: hidden;
+}
+
+#celebration-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.celebration-text {
+    font-size: 4rem;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
+    animation: scaleIn 1s ease-out forwards;
+}
+
+.celebration-subtext {
+    font-size: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.8s forwards;
+}
+
+/* Balloon animations and styles are the same */
+.balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: rotate(-10deg);
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+    opacity: 1;
+}
+
+.balloon:nth-child(1) { background-color: #D4A3A1; }
+.balloon:nth-child(2) { background-color: #F4C7C3; }
+.balloon:nth-child(3) { background-color: #E6A4B4; }
+.balloon:nth-child(4) { background-color: #D3B8AE; }
+.balloon:nth-child(5) { background-color: #FFDAB9; }
+
+
+@keyframes balloon-rise {
+    from { bottom: -10%; opacity: 1; }
+    to { bottom: 120%; opacity: 0; }
+}
+/* Other keyframes (scaleIn, fadeIn) are unchanged */
+
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #D4A3A1 0%, #F4C7C3 100%);
+    color: white;
+    padding: 3rem 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+/* Main Content Sections */
+main {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: white;
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section:nth-child(even) {
+    background-color: #FDF0F0;
+}
+
+section h2 {
+    font-family: 'Open Sans', sans-serif; /* English font for section headers */
+    color: #B8860B; /* Dark Gold */
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Arabic override for specific headers */
+#intro h2, #memories h2 {
+    font-family: 'Amiri', serif;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: #D4A3A1; /* Dusty Rose */
+    left: 25%;
+    bottom: -10px;
+    border-radius: 5px;
+}
+
+/* Intro Section */
+#intro .intro-message {
+    text-align: right; /* Align Arabic text to the right */
+    max-width: 700px;
+}
+
+#intro .intro-message h3.signature {
+    text-align: left; /* Align signature to the left */
+    color: #C18C8A;
+    font-size: 1.8rem;
+}
+
+/* Other styles like photo carousel, videos, etc., are unchanged. */
+/* Just copy them from the previous CSS file. */
+
+/* Footer */
+footer {
+    background-color: #4B4B4B;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
