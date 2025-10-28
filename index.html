@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- The lang="ar" and dir="rtl" attributes help browsers render Arabic text correctly. -->
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Arabic (Amiri/Cairo) and English (Dancing Script/Open Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600&family=Dancing+Script:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- GLOBAL BACKGROUND MUSIC -->
+    <audio id="global-bg-music" autoplay loop>
+        <source src="audio/global_background_music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- MUSIC TOGGLE BUTTON - Text is in English -->
+    <button id="music-toggle" title="Toggle Background Music">
+        <span class="icon">🎶</span> Music On
+    </button>
+
+    <!-- CELEBRATION OVERLAY - Text is in Arabic -->
+    <div id="celebration-overlay">
+        <h1 class="celebration-text">عيد ميلاد سعيد يا مرمر!</h1>
+        <p class="celebration-subtext">مع كل حبي، مارسلينو</p>
+    </div>
+
+    <header>
+        <!-- Header text is in Arabic -->
+        <h1>عيد ميلاد سعيد يا مرمورة قلبي!</h1>
+        <p>موقع خاص جداً لكِ!</p>
+    </header>
+
+    <main>
+        <!-- Intro Section: Arabic Messages -->
+        <section id="intro" class="scroll-reveal">
+            <h2>أغلى ما عندي، مرمر</h2>
+            <div class="intro-content">
+                <img src="images/intro_pic.jpg" alt="A special picture of us" class="intro-image">
+                <div class="intro-message">
+                    <p>في يومك المميز، أردت أن أصنع شيئًا فريدًا للاحتفال بكِ وبرحلتنا معًا. كل لحظة معك هي هدية، وأنا أعتز بكل الذكريات التي صنعناها.</p>
+                    <p>هذا الموقع الصغير مليء بقطع من قصة حبنا – صور وفيديوهات وأغانٍ تعني لنا الكثير. استعدي لرحلة صغيرة في ذاكرتنا وبعض الرسائل من القلب!</p>
+                    <h3 class="signature">مارسلينو</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section: English titles -->
+        <section id="videos" class="scroll-reveal">
+            <h2>Our Special Moment in Motion</h2>
+            <p>Relive a cherished memory:</p>
+            <div class="video-container">
+                <video controls loop muted>
+                    <source src="videos/video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- Memories Section: Arabic titles -->
+        <section id="memories" class="scroll-reveal">
+            <h2>ذكرياتنا الغالية</h2>
+            <p>مجموعة من اللحظات التي تضيء قلبي:</p>
+            <div class="photo-carousel memories-carousel">
+                <img src="images/memory_pic1.jpg" alt="Memory 1">
+                <img src="images/memory_pic2.jpg" alt="Memory 2">
+                <img src="images/memory_pic3.jpg" alt="Memory 3">
+                <img src="images/memory_pic4.jpg" alt="Memory 4">
+                <img src="images/memory_pic5.jpg" alt="Memory 5">
+                <img src="images/memory_pic6.jpg" alt="Memory 6">
+                <img src="images/memory_pic7.jpg" alt="Memory 7">
+                <img src="images/memory_pic8.jpg" alt="Memory 8">
+                <img src="images/memory_pic9.jpg" alt="Memory 9">
+                <img src="images/memory_pic10.jpg" alt="Memory 10">
+                <button class="prev-btn">‹</button>
+                <button class="next-btn">›</button>
+            </div>
+            <p class="music-note">Our "memory lane" soundtrack:</p>
+            <audio controls loop>
+                <source src="audio/memories_music.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p class="small-text">(Please press play to listen!)</p>
+        </section>
+
+        <!-- Wishes Section: Arabic quote -->
+        <section id="wishes" class="scroll-reveal">
+            <h2>My Hopes and Wishes for You</h2>
+            <p>A special wish from my heart:</p>
+            <div class="single-wish">
+                <img src="images/wish_pic1.jpg" alt="A special wish for you">
+                <div class="quote-overlay">
+                    <blockquote>"عيد ميلاد سعيد يا مرمر الرائعة! أتمنى لكِ في رحلتكِ الأكاديمية والمهنية كل النجاح والتوفيق. ليحقق الله كل أحلامك وطموحاتك. سأكون دائمًا أكبر مشجعيكِ. كل حبي."</blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recorded Message Section: Arabic message -->
+        <section id="recorded-message" class="scroll-reveal">
+            <h2>A Special Message Just For You</h2>
+            <p>أردت أن أقول لكِ شيئًا خاصًا مباشرة من قلبي. اضغطي تشغيل!</p>
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/my_recorded_message.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>أتمنى لكِ أسعد عيد ميلاد يا حبيبتي. عيد ميلاد سعيد يا مرمر!</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <!-- Footer in Arabic -->
+        <p>© 2025 مارسلينو. صنع بكل الحب لـ مرمر.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
